@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUST & CO. — Baked Slow. Savoured Fully.</title>
+  <meta name="description" content="Artisan bakery craft focused on slow fermentation, cultured butter, open crumb sourdough, and flaky golden pastries. Baked fresh daily.">
+  <meta name="theme-color" content="#F9F6F0">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥐</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-badge" id="cursorBadge">TASTE</div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container" id="scrollProgressContainer">
+    <div class="progress-bar-fill" id="progressBarFill"></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" aria-label="CRUST & CO. Home">
+        <img src="assets/images/logo.svg" alt="CRUST & CO. Brand Emblem" class="brand-logo-img">
+        <div class="logo-text-group">
+          <span class="logo-main">CRUST & CO.</span>
+          <span class="logo-sub">ARTISAN BAKEHOUSE</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#the-bake" class="nav-item">THE BAKE</a>
+        <a href="#signatures" class="nav-item">SIGNATURES</a>
+        <a href="#the-craft" class="nav-item">THE CRAFT</a>
+        <a href="#ingredients" class="nav-item">INGREDIENTS</a>
+        <a href="#moments" class="nav-item">MOMENTS</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="sound-toggle-btn magnetic-btn" id="soundToggleBtn" aria-label="Toggle Sound Effects" title="Bakehouse Sound FX">
+          <span class="sound-icon" id="soundIcon">🔊</span>
+          <span class="sound-label">SOUND</span>
+        </button>
+        <button class="basket-btn magnetic-btn" id="openBasketBtn" aria-label="View Morning Basket">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+          <span class="basket-count" id="basketCount">0</span>
+        </button>
+        <button class="btn-visit magnetic-btn" id="openVisitModal">
+          <span>VISIT</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay Menu (Right Side Drawer) -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-header">
+        <a href="#hero" class="nav-logo" aria-label="CRUST & CO. Home">
+          <img src="assets/images/logo.svg" alt="CRUST & CO. Brand Emblem" class="brand-logo-img">
+          <div class="logo-text-group">
+            <span class="logo-main">CRUST & CO.</span>
+            <span class="logo-sub">ARTISAN BAKEHOUSE</span>
+          </div>
+        </a>
+        <button class="close-menu-btn" id="closeMenuBtn" aria-label="Close menu">&times;</button>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="#the-bake" class="mobile-link">01 / THE BAKE</a>
+        <a href="#signatures" class="mobile-link">02 / SIGNATURES</a>
+        <a href="#the-craft" class="mobile-link">03 / THE CRAFT</a>
+        <a href="#ingredients" class="mobile-link">04 / INGREDIENTS</a>
+        <a href="#moments" class="mobile-link">05 / MOMENTS</a>
+      </nav>
+      <div class="mobile-menu-footer">
+        <p class="tagline">BAKED SLOW. SAVOURED FULLY.</p>
+        <button class="btn-primary full-width" id="mobileVisitBtn">VISIT OUR BAKEHOUSE →</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- SECTION 01: HERO -->
+    <section class="section-hero" id="hero">
+      <div class="hero-bg-wrapper">
+        <img src="assets/images/hero_sourdough.jpg" alt="Freshly baked artisan sourdough loaf and golden flaky croissant" class="hero-bg-img" id="heroBgImg">
+        <div class="hero-overlay"></div>
+        <!-- Canvas for slow floating flour particles -->
+        <canvas id="flourCanvas" class="flour-canvas"></canvas>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge reveal-item">
+          <span class="badge-dot"></span>
+          <span>EST. 2018 · HANDCRAFTED DAILY</span>
+        </div>
+        
+        <h1 class="hero-title reveal-item">
+          <span class="line-1">BAKED SLOW.</span>
+          <span class="line-2">SAVOURED FULLY.</span>
+        </h1>
+
+        <p class="hero-subtext reveal-item">
+          Good baking takes time. We think that's part of the flavour.
+        </p>
+
+        <div class="hero-ctas reveal-item">
+          <a href="#the-bake" class="btn-primary magnetic-btn">
+            <span>DISCOVER THE BAKE</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#perfect-crust" class="btn-text magnetic-btn">
+            <span>SCROLL TO EXPLORE ↓</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-scroll-indicator">
+        <span class="mouse-icon">
+          <span class="wheel"></span>
+        </span>
+      </div>
+    </section>
+
+    <!-- SECTION 02: THE MORNING BAKE -->
+    <section class="section-morning-bake" id="the-bake">
+      <div class="container">
+        <div class="section-header flex-between">
+          <div class="header-text-group">
+            <span class="section-subtitle">BATCH 01 · 06:30 AM</span>
+            <h2 class="section-title">THE DAY STARTS <br class="desktop-only">IN THE OVEN.</h2>
+          </div>
+          <div class="gallery-nav-controls desktop-only">
+            <button class="nav-arrow-btn" id="slidePrev" aria-label="Previous Item" title="Previous Item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </button>
+            <button class="nav-arrow-btn" id="slideNext" aria-label="Next Item" title="Next Item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="bake-horizontal-scroll" id="bakeScrollTrack">
+          <!-- Item 1: Sourdough -->
+          <article class="bake-card hover-taste" data-product="sourdough">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&w=1200&q=85" alt="Artisan Country Sourdough" loading="lazy">
+              <span class="item-number">01</span>
+            </div>
+            <div class="card-info">
+              <h3>SOURDOUGH</h3>
+              <p class="card-desc">Deep blistered crust · Wild yeast fermented for 36 hours · Open honeycombed crumb</p>
+              <div class="card-meta">
+                <span>36h Ferment</span>
+                <span>Stoneground Wheat</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 2: Croissant -->
+          <article class="bake-card hover-taste" data-product="croissant">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=85" alt="Golden Butter Croissant" loading="lazy">
+              <span class="item-number">02</span>
+            </div>
+            <div class="card-info">
+              <h3>CROISSANT</h3>
+              <p class="card-desc">84% Fat cultured butter · 81 paper-thin laminated pastry layers · Crisp golden shatter</p>
+              <div class="card-meta">
+                <span>Cultured Butter</span>
+                <span>Hand Laminated</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 3: Brioche -->
+          <article class="bake-card hover-taste" data-product="brioche">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85" alt="Artisan Golden Brioche" loading="lazy">
+              <span class="item-number">03</span>
+            </div>
+            <div class="card-info">
+              <h3>BRIOCHE</h3>
+              <p class="card-desc">Rich yolk emulsion · Organic wildflower honey · Soft cloud-like golden interior</p>
+              <div class="card-meta">
+                <span>Pasture Eggs</span>
+                <span>Wild Honey</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 4: Cinnamon Roll -->
+          <article class="bake-card hover-taste" data-product="cinnamon-roll">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=1200&q=85" alt="Glazed Cinnamon Roll" loading="lazy">
+              <span class="item-number">04</span>
+            </div>
+            <div class="card-info">
+              <h3>CINNAMON ROLL</h3>
+              <p class="card-desc">Ceylon cinnamon swirl · Caramelized brown sugar · Warm vanilla bean glaze</p>
+              <div class="card-meta">
+                <span>Ceylon Spice</span>
+                <span>Vanilla Glaze</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 5: Baguette -->
+          <article class="bake-card hover-taste" data-product="baguette">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1597079910443-60c43fc4f729?auto=format&fit=crop&w=1200&q=85" alt="Traditional French Baguette" loading="lazy">
+              <span class="item-number">05</span>
+            </div>
+            <div class="card-info">
+              <h3>BAGUETTE</h3>
+              <p class="card-desc">Singed ears · High-hydration poolish ferment · Rustic crackling crust</p>
+              <div class="card-meta">
+                <span>Traditional Poolish</span>
+                <span>Deck Baked</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: THE PERFECT CRUST -->
+    <section class="section-perfect-crust" id="perfect-crust">
+      <div class="container">
+        <div class="crust-grid">
+          <div class="crust-text-column">
+            <span class="section-subtitle">THE SENSORY CONTRAST</span>
+            <h2 class="section-title">CRISP OUTSIDE.<br>SOFT WITHIN.</h2>
+            <p class="section-lead">The beauty of good bread lives in the contrast.</p>
+            <p class="section-body">
+              Listen closely when a loaf comes out of our wood-deck ovens. The crust crackles and sings as it cools. Slice through that dark golden carapace, and you meet a tender, glistening crumb filled with irregular translucent pockets of air.
+            </p>
+            <div class="crust-metrics">
+              <div class="metric-item">
+                <span class="metric-val">240°C</span>
+                <span class="metric-lbl">OVEN DECK TEMP</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">82%</span>
+                <span class="metric-lbl">DOUGH HYDRATION</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val">36HRS</span>
+                <span class="metric-lbl">COLD FERMENT</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="crust-visual-column">
+            <!-- Interactive Macro Reveal Slider -->
+            <div class="macro-reveal-container" id="macroRevealContainer">
+              <div class="macro-img img-before">
+                <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=1200&q=85" alt="Golden Sourdough Exterior Crust">
+                <span class="macro-label">DARK GOLDEN CRUST</span>
+              </div>
+              <div class="macro-img img-after" id="macroImgAfter">
+                <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=1200&q=85" alt="Sourdough Open Crumb Macro Texture">
+                <span class="macro-label">GLOSSY OPEN CRUMB</span>
+              </div>
+              <div class="macro-slider-handle" id="macroSliderHandle">
+                <div class="handle-line"></div>
+                <div class="handle-button">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8L22 12L18 16M6 8L2 12L6 16"/></svg>
+                </div>
+              </div>
+            </div>
+            <p class="macro-hint">Drag slider horizontally to reveal interior crumb micro-texture</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04: FROM FLOUR TO FIRE -->
+    <section class="section-craft" id="the-craft">
+      <div class="container">
+        <div class="craft-header text-center">
+          <span class="section-subtitle">OUR TIME-HONOURED PROCESS</span>
+          <h2 class="section-title">FROM FLOUR TO FIRE.</h2>
+          <p class="section-lead">Seven silent steps before the dawn break.</p>
+        </div>
+
+        <div class="craft-journey-wrapper">
+          <!-- Step Navigation Tabs -->
+          <div class="craft-steps-nav" id="craftStepsNav">
+            <button class="step-nav-btn active" data-step="0">01. MIX</button>
+            <button class="step-nav-btn" data-step="1">02. KNEAD</button>
+            <button class="step-nav-btn" data-step="2">03. REST</button>
+            <button class="step-nav-btn" data-step="3">04. SHAPE</button>
+            <button class="step-nav-btn" data-step="4">05. PROOF</button>
+            <button class="step-nav-btn" data-step="5">06. BAKE</button>
+            <button class="step-nav-btn" data-step="6">07. SERVE</button>
+          </div>
+
+          <!-- Process Display Container -->
+          <div class="craft-display-grid">
+            <div class="craft-image-frame" id="craftImageFrame">
+              <img id="craftImg" src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=1200&q=85" alt="Process step image">
+              <div class="craft-dough-morph-overlay" id="doughMorphOverlay"></div>
+            </div>
+
+            <div class="craft-details-panel">
+              <span class="step-tag" id="craftStepTag">STAGE 01 OF 07</span>
+              <h3 class="step-title" id="craftStepTitle">01. MIX</h3>
+              <p class="step-desc" id="craftStepDesc">
+                Organic stoneground flour meets pure filtered mountain water and our wild mother starter, nurtured continuously since 2018. Hydrated slowly to initiate gentle enzymatic action.
+              </p>
+              <div class="step-specs" id="craftStepSpecs">
+                <div class="spec-row">
+                  <span>Temperature</span>
+                  <strong>21°C Room / 24°C Water</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Time</span>
+                  <strong>45 Minute Autolyse</strong>
+                </div>
+              </div>
+              
+              <!-- Morph Toggle Button -->
+              <div class="morph-interactive-box">
+                <button class="btn-morph-toggle" id="btnMorphToggle">
+                  <span>TOGGLE DOUGH → GOLDEN BREAD TRANSITION</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05: SIGNATURES -->
+    <section class="section-signatures" id="signatures">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-subtitle">DAILY SELECTION</span>
+          <h2 class="section-title">THE ONES WE BAKE FOR.</h2>
+          <p class="section-lead">Made in small batches every morning. Reserve online for guaranteed batch pickup.</p>
+          
+          <!-- Category Filter Buttons -->
+          <div class="category-filters" id="categoryFilters">
+            <button class="filter-btn active" data-filter="all">ALL SELECTIONS</button>
+            <button class="filter-btn" data-filter="viennoiserie">VIENNOISERIE</button>
+            <button class="filter-btn" data-filter="sourdough">SOURDOUGH LOAVES</button>
+            <button class="filter-btn" data-filter="sweet">BRIOCHE & SWEET</button>
+          </div>
+        </div>
+
+        <div class="signatures-grid" id="signaturesGrid">
+          
+          <!-- Product 1 -->
+          <div class="signature-card hover-taste" data-id="classic-croissant" data-category="viennoiserie" data-title="THE CLASSIC CROISSANT" data-price-val="5.50" data-desc="Hand-laminated with 84% fat cultured butter from Normandy. Light as air with a distinct buttery shatter." data-ingredients="T55 Flour, Normandy Butter, Milk, Sea Salt, Sugar, Wild Starter" data-crunch="10/10" data-hours="36h">
+            <div class="sig-img-box">
+              <img src="assets/images/croissant_detail.jpg" alt="The Classic Croissant" loading="lazy">
+              <div class="sig-badge">SIGNATURE</div>
+            </div>
+            <div class="sig-body">
+              <div class="sig-top">
+                <h3>THE CLASSIC CROISSANT</h3>
+                <span class="sig-price">$5.50</span>
+              </div>
+              <p class="sig-desc">Pure cultured butter · Crisp paper-thin layers · Airy honeycombed core</p>
+              <div class="sig-card-actions">
+                <button class="btn-explore-item">NOTES →</button>
+                <button class="btn-add-basket" data-id="classic-croissant" data-title="THE CLASSIC CROISSANT" data-price="5.50" data-img="assets/images/croissant_detail.jpg">+ ADD TO BASKET</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="signature-card hover-taste" data-id="chocolate-croissant" data-category="viennoiserie" data-title="DARK CHOCOLATE CROISSANT" data-price-val="6.50" data-desc="Twice-baked butter pastry wrapped around two batons of 70% single-origin Valrhona dark chocolate." data-ingredients="T55 Flour, Cultured Butter, 70% Valrhona Dark Chocolate, Sea Salt" data-crunch="9/10" data-hours="36h">
+            <div class="sig-img-box">
+              <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=900&q=85" alt="Dark Chocolate Croissant" loading="lazy">
+              <div class="sig-badge">POPULAR</div>
+            </div>
+            <div class="sig-body">
+              <div class="sig-top">
+                <h3>DARK CHOCOLATE CROISSANT</h3>
+                <span class="sig-price">$6.50</span>
+              </div>
+              <p class="sig-desc">Valrhona dark chocolate batons · Butter pastry · Cocoa nib dusting</p>
+              <div class="sig-card-actions">
+                <button class="btn-explore-item">NOTES →</button>
+                <button class="btn-add-basket" data-id="chocolate-croissant" data-title="DARK CHOCOLATE CROISSANT" data-price="6.50" data-img="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=900&q=85">+ ADD TO BASKET</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="signature-card hover-taste" data-id="sea-salt-sourdough" data-category="sourdough" data-title="SEA SALT SOURDOUGH" data-price-val="9.00" data-desc="Naturally leavened loaf with Maldon sea salt crystals baked into a deeply caramelized blistered crust." data-ingredients="Organic Stoneground Wheat, Rye Flour, Water, Maldon Sea Salt, Starter" data-crunch="10/10" data-hours="48h">
+            <div class="sig-img-box">
+              <img src="assets/images/hero_sourdough.jpg" alt="Sea Salt Sourdough" loading="lazy">
+              <div class="sig-badge">HOUSE SPECIAL</div>
+            </div>
+            <div class="sig-body">
+              <div class="sig-top">
+                <h3>SEA SALT SOURDOUGH</h3>
+                <span class="sig-price">$9.00</span>
+              </div>
+              <p class="sig-desc">Wild sourdough · Maldon sea salt · Open airy crumb structure</p>
+              <div class="sig-card-actions">
+                <button class="btn-explore-item">NOTES →</button>
+                <button class="btn-add-basket" data-id="sea-salt-sourdough" data-title="SEA SALT SOURDOUGH" data-price="9.00" data-img="assets/images/hero_sourdough.jpg">+ ADD TO BASKET</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="signature-card hover-taste" data-id="honey-brioche" data-category="sweet" data-title="HONEY BRIOCHE LOAF" data-price-val="8.50" data-desc="Enriched with pasture-raised egg yolks, grass-fed butter, and raw mountain wildflower honey." data-ingredients="Flour, Grass-Fed Butter, Organic Eggs, Wild Honey, Whole Milk, Yeast" data-crunch="4/10" data-hours="24h">
+            <div class="sig-img-box">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=85" alt="Honey Brioche" loading="lazy">
+            </div>
+            <div class="sig-body">
+              <div class="sig-top">
+                <h3>HONEY BRIOCHE</h3>
+                <span class="sig-price">$8.50</span>
+              </div>
+              <p class="sig-desc">Wildflower honey · Rich golden yolk · Feather-light pillowy texture</p>
+              <div class="sig-card-actions">
+                <button class="btn-explore-item">NOTES →</button>
+                <button class="btn-add-basket" data-id="honey-brioche" data-title="HONEY BRIOCHE LOAF" data-price="8.50" data-img="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=85">+ ADD TO BASKET</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="signature-card hover-taste" data-id="cinnamon-roll" data-category="sweet" data-title="CINNAMON SUGAR ROLL" data-price-val="6.00" data-desc="Soft brioche spiral folded with freshly ground Ceylon cinnamon, muscovado sugar, and cream cheese glaze." data-ingredients="Flour, Butter, Ceylon Cinnamon, Muscovado Sugar, Vanilla Bean, Cream Cheese" data-crunch="5/10" data-hours="18h">
+            <div class="sig-img-box">
+              <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=900&q=85" alt="Cinnamon Roll" loading="lazy">
+            </div>
+            <div class="sig-body">
+              <div class="sig-top">
+                <h3>CINNAMON ROLL</h3>
+                <span class="sig-price">$6.00</span>
+              </div>
+              <p class="sig-desc">Ceylon cinnamon · Brown sugar caramel · Creamy vanilla glaze</p>
+              <div class="sig-card-actions">
+                <button class="btn-explore-item">NOTES →</button>
+                <button class="btn-add-basket" data-id="cinnamon-roll" data-title="CINNAMON SUGAR ROLL" data-price="6.00" data-img="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=900&q=85">+ ADD TO BASKET</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="signature-card hover-taste" data-id="berry-danish" data-category="viennoiserie" data-title="WILD BERRY DANISH" data-price-val="7.00" data-desc="Laminated Danish pastry shell filled with vanilla bean pastry cream and fresh organic raspberries and blueberries." data-ingredients="Flour, Cultured Butter, Vanilla Pastry Cream, Organic Raspberries, Blueberries" data-crunch="8/10" data-hours="24h">
+            <div class="sig-img-box">
+              <img src="assets/images/pastry_spread.jpg" alt="Berry Danish" loading="lazy">
+            </div>
+            <div class="sig-body">
+              <div class="sig-top">
+                <h3>BERRY DANISH</h3>
+                <span class="sig-price">$7.00</span>
+              </div>
+              <p class="sig-desc">Wild organic berries · Madagascar vanilla cream · Flaky crisp border</p>
+              <div class="sig-card-actions">
+                <button class="btn-explore-item">NOTES →</button>
+                <button class="btn-add-basket" data-id="berry-danish" data-title="WILD BERRY DANISH" data-price="7.00" data-img="assets/images/pastry_spread.jpg">+ ADD TO BASKET</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06: THE BUTTER TEST -->
+    <section class="section-butter-test" id="butter-test">
+      <div class="container">
+        <div class="butter-header text-center">
+          <span class="section-subtitle">THE ARTISAN BENCHMARK</span>
+          <h2 class="section-title">IF IT DOESN'T FLAKE,<br>WE'RE NOT DONE.</h2>
+          <p class="section-lead">A true croissant reveals its master in the sound of its first tear.</p>
+        </div>
+
+        <!-- Interactive Sequence Slider -->
+        <div class="sequence-wrapper">
+          <div class="sequence-controls">
+            <button class="seq-tab-btn active" data-seq="0">01 / THE CROISSANT</button>
+            <button class="seq-tab-btn" data-seq="1">02 / THE TEAR</button>
+            <button class="seq-tab-btn" data-seq="2">03 / THE LAYERS</button>
+            <button class="seq-tab-btn" data-seq="3">04 / THE CRUMBS</button>
+          </div>
+
+          <div class="sequence-stage">
+            <div class="seq-image-container">
+              <img id="seqImg" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=85" alt="Croissant sequence photo">
+            </div>
+            <div class="seq-caption-card">
+              <span class="seq-num" id="seqNum">PHASE 01 / 04</span>
+              <h3 class="seq-title" id="seqTitle">THE GOLDEN SHELL</h3>
+              <p class="seq-desc" id="seqDesc">
+                Baked at high initial heat to capture moisture inside while forging a deep caramel-hued exterior crust.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 07: INGREDIENTS -->
+    <section class="section-ingredients" id="ingredients">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-subtitle">UNCOMPROMISING SELECTION</span>
+          <h2 class="section-title">START WITH THE GOOD STUFF.</h2>
+          <p class="section-lead">No improvers. No artificial enzymes. Just six honest ingredients treated with reverence.</p>
+        </div>
+
+        <div class="ingredients-grid">
+          
+          <div class="ingredient-card">
+            <div class="ing-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=85" alt="Organic Flour">
+            </div>
+            <div class="ing-content">
+              <h3>STONEGROUND FLOUR</h3>
+              <p>Milled slowly on granite stones to preserve the wheat germ, natural oils and earthy fragrance.</p>
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ing-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&w=800&q=85" alt="Cultured Butter">
+            </div>
+            <div class="ing-content">
+              <h3>CULTURED BUTTER</h3>
+              <p>84% butterfat content, churned from grass-fed cream and fermented with lactic cultures for unmatched depth.</p>
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ing-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1516448620398-c5f44bf9f441?auto=format&fit=crop&w=800&q=85" alt="Pasture Eggs">
+            </div>
+            <div class="ing-content">
+              <h3>FARM EGGS</h3>
+              <p>Gathered daily from local pasture-raised hens with deep amber yolks that lend brilliant gold to our brioche.</p>
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ing-img-wrapper">
+              <img src="assets/images/q2.jpg" alt="Raw Wild Honey">
+            </div>
+            <div class="ing-content">
+              <h3>WILD HONEY</h3>
+              <p>Raw unfiltered mountain nectar infused with wildflower notes, providing subtle natural sweetness.</p>
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ing-img-wrapper">
+              <img src="assets/images/q1.jpg" alt="Belgian Cocoa">
+            </div>
+            <div class="ing-content">
+              <h3>DARK COCOA</h3>
+              <p>70% single-origin Belgian chocolate batons, rich in fruit notes and bitter-sweet harmony.</p>
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ing-img-wrapper">
+              <img src="assets/images/q3.jpg" alt="Fresh Berries">
+            </div>
+            <div class="ing-content">
+              <h3>SEASONAL BERRIES</h3>
+              <p>Hand-picked organic wild raspberries, blackberries and blueberries delivered fresh each morning.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 08: THE BAKERS -->
+    <section class="section-bakers" id="bakers">
+      <div class="container">
+        <div class="bakers-grid">
+          <div class="bakers-image-box">
+            <img src="assets/images/bakers_hands.jpg" alt="Bakers hands dusting flour on workbench" class="parallax-img">
+            <div class="bakers-overlay-quote">
+              <p>“Every loaf carries the marks of the hands that made it.”</p>
+            </div>
+          </div>
+
+          <div class="bakers-text-box">
+            <span class="section-subtitle">THE PEOPLE BEHIND THE CRAFT</span>
+            <h2 class="section-title">MADE BY HAND.<br>EVERY MORNING.</h2>
+            <p class="section-lead">Before the sun wakes the city, our bakehouse is alive with the rhythmic dusting of flour.</p>
+            <p class="section-body">
+              There are no automated assembly lines here. Our bakers touch every piece of dough, feeling its fermentation state, checking its elasticity, and scoring each sourdough loaf with intuitive precision.
+            </p>
+            <div class="baker-signatures">
+              <div class="signature-item">
+                <span class="sig-name">Juliette Moreau</span>
+                <span class="sig-role">Head Boulangère</span>
+              </div>
+              <div class="signature-item">
+                <span class="sig-name">Marcus Vance</span>
+                <span class="sig-role">Master Leavener</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 09: FRESH FROM THE OVEN (DARK DRAMATIC SECTION) -->
+    <section class="section-fresh-oven" id="fresh-oven">
+      <div class="oven-bg-container">
+        <img src="assets/images/wood_oven.jpg" alt="Fresh pastries out of bakery oven" class="oven-bg-img">
+        <canvas id="steamCanvas" class="steam-canvas"></canvas>
+        <div class="oven-gradient-overlay"></div>
+      </div>
+
+      <div class="container relative-z">
+        <div class="oven-content text-center">
+          
+          <div class="editorial-labels">
+            <span class="label-chip live-clock" id="liveOvenTime">07:12 AM</span>
+            <span class="label-chip">FIRST BAKE</span>
+            <span class="label-chip highlight">STILL WARM</span>
+          </div>
+
+          <h2 class="oven-title">FRESH FROM<br>THE OVEN.</h2>
+
+          <p class="oven-sub">
+            The deck temperature is 240°C. The steam has cleared. A tray of blistering golden sourdough loaves emerges into the morning air.
+          </p>
+
+          <div class="oven-cta-box">
+            <button class="btn-primary-gold magnetic-btn" id="openOvenScheduleBtn">
+              <span>VIEW TODAY'S BAKE TIMELINE →</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: BAKERY MOMENTS -->
+    <section class="section-moments" id="moments">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-subtitle">THE LIFESTYLE</span>
+          <h2 class="section-title">GOOD BREAD<br>MAKES GOOD MOMENTS.</h2>
+          <p class="section-lead">The simple ritual of breaking bread with people you love.</p>
+        </div>
+
+        <div class="moments-masonry">
+          
+          <div class="moment-card size-tall">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85" alt="Morning coffee and fresh croissant" loading="lazy">
+            <div class="moment-caption">
+              <span>08:15 AM · MORNING COFFEE & CROISSANT</span>
+            </div>
+          </div>
+
+          <div class="moment-card size-wide">
+            <img src="https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&w=900&q=85" alt="Friends sharing sourdough bread" loading="lazy">
+            <div class="moment-caption">
+              <span>12:30 PM · SHARING SOURDOUGH AT THE TABLE</span>
+            </div>
+          </div>
+
+          <div class="moment-card">
+            <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=900&q=85" alt="Family breakfast spread" loading="lazy">
+            <div class="moment-caption">
+              <span>09:00 AM · WEEKEND BREAKFAST TABLE</span>
+            </div>
+          </div>
+
+          <div class="moment-card">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=85" alt="Artisanal pour over coffee" loading="lazy">
+            <div class="moment-caption">
+              <span>10:45 AM · SPECIALTY ROAST PAIRING</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 11: FINAL MOMENT -->
+    <section class="section-final-moment" id="final-moment">
+      <div class="final-bg-wrapper">
+        <img src="assets/images/hero_sourdough.jpg" alt="Warm bakery table spread" class="final-bg-img">
+        <div class="final-overlay"></div>
+      </div>
+
+      <div class="container relative-z text-center">
+        <span class="final-tag">OUR DOOR IS OPEN</span>
+        <h2 class="final-title">
+          COME FOR THE SMELL.<br>STAY FOR THE FIRST BITE.
+        </h2>
+        <p class="final-sub">
+          744 Bakery Lane · Fresh bakes every day from 06:30 AM.
+        </p>
+
+        <div class="final-actions">
+          <button class="btn-primary-lg magnetic-btn" id="finalVisitBtn">
+            <span>VISIT CRUST & CO. →</span>
+          </button>
+          <a href="#hero" class="btn-outline-lg magnetic-btn">
+            <span>BACK TO THE BAKE ↑</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo-row">
+            <img src="assets/images/logo.svg" alt="CRUST & CO. Logo Emblem" class="footer-logo-img">
+            <span class="footer-logo">CRUST & CO.</span>
+          </div>
+          <p class="footer-tagline">BAKED SLOW. SAVOURED FULLY.</p>
+          <p class="footer-motto">Freshly baked. Thoughtfully made.</p>
+        </div>
+
+        <div class="footer-nav">
+          <div class="footer-col">
+            <h4>EXPLORE</h4>
+            <a href="#the-bake">THE BAKE</a>
+            <a href="#signatures">SIGNATURES</a>
+            <a href="#the-craft">THE CRAFT</a>
+            <a href="#ingredients">INGREDIENTS</a>
+            <a href="#moments">MOMENTS</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>BAKEHOUSE</h4>
+            <p>744 Bakery Lane, Artisan Quarter</p>
+            <p>Mon – Sun: 06:30 AM – 04:00 PM</p>
+            <p>hello@crustandco.com</p>
+          </div>
+
+          <div class="footer-col">
+            <h4>MORNING BAKE ALERTS</h4>
+            <p>Receive an alert when warm sourdough leaves the oven.</p>
+            <form class="subscribe-form" id="subscribeForm" onsubmit="event.preventDefault(); alert('Thank you for subscribing! You will receive daily morning bake alerts.');">
+              <input type="email" placeholder="Your email address" required aria-label="Email Address">
+              <button type="submit">JOIN</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 CRUST & CO. ARTISAN BAKERY BRAND. ALL RIGHTS RESERVED.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">INSTAGRAM</a>
+          <a href="#" aria-label="Pinterest">PINTEREST</a>
+          <a href="#" aria-label="Vimeo">DOCUMENTARY FILM</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL 1: VISIT / LOCATION MODAL -->
+  <div class="modal-backdrop" id="visitModalBackdrop">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeVisitModal">&times;</button>
+      <span class="modal-subtitle">VISIT OUR BAKEHOUSE</span>
+      <h2 class="modal-title">CRUST & CO. FLAGSHIP</h2>
+      
+      <div class="modal-grid">
+        <div class="modal-info-block">
+          <h4>LOCATION</h4>
+          <p>744 Bakery Lane, Artisan District<br>West Quarter, CT 06012</p>
+          
+          <h4>HOURS</h4>
+          <p>Monday – Friday: 06:30 AM – 04:00 PM<br>Saturday – Sunday: 07:00 AM – 05:00 PM</p>
+
+          <h4>TODAY'S OVEN SCHEDULE</h4>
+          <ul class="schedule-list">
+            <li><span>06:30 AM</span> <strong>Country Sourdough & Croissants</strong></li>
+            <li><span>08:15 AM</span> <strong>Pain au Chocolat & Brioche</strong></li>
+            <li><span>10:30 AM</span> <strong>Berry Danish & Cinnamon Rolls</strong></li>
+            <li><span>01:00 PM</span> <strong>Afternoon Crust & Baguettes</strong></li>
+          </ul>
+        </div>
+
+        <div class="modal-map-block">
+          <div class="map-placeholder">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=85" alt="Bakery Storefront">
+            <div class="map-badge">📍 744 BAKERY LANE</div>
+          </div>
+          <button class="btn-primary full-width margin-top-md" onclick="alert('Directions copied to clipboard! (744 Bakery Lane)');">
+            GET DIRECTIONS →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: PRODUCT TASTING NOTES DRAWER -->
+  <div class="drawer-backdrop" id="tastingDrawerBackdrop">
+    <div class="drawer-card">
+      <button class="drawer-close-btn" id="closeTastingDrawer">&times;</button>
+      
+      <div class="drawer-header">
+        <span class="drawer-badge" id="drawerBadge">TASTING PROFILE</span>
+        <h2 class="drawer-title" id="drawerTitle">PRODUCT NAME</h2>
+      </div>
+
+      <div class="drawer-body">
+        <div class="drawer-rating-row">
+          <div class="rating-box">
+            <span class="lbl">CRUNCH RATING</span>
+            <strong id="drawerCrunch">10/10</strong>
+          </div>
+          <div class="rating-box">
+            <span class="lbl">FERMENT TIME</span>
+            <strong id="drawerHours">36 Hours</strong>
+          </div>
+        </div>
+
+        <h4>CRAFT DESCRIPTION</h4>
+        <p class="drawer-desc" id="drawerDesc">
+          Description goes here...
+        </p>
+
+        <h4>KEY INGREDIENTS</h4>
+        <p class="drawer-ingredients" id="drawerIngredients">
+          Ingredients go here...
+        </p>
+
+        <h4>SOMMELIER PAIRING SUGGESTION</h4>
+        <p class="drawer-pairing">
+          Pairs exquisitely with a warm single-origin pour-over coffee or fresh cultured salted butter.
+        </p>
+
+        <button class="btn-primary full-width margin-top-lg" id="drawerReserveBtn" onclick="alert('Item reserved for morning pickup at 0744 Bakery Lane!');">
+          RESERVE FOR MORNING PICKUP →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: MORNING BASKET DRAWER -->
+  <div class="drawer-backdrop" id="basketDrawerBackdrop">
+    <div class="drawer-card basket-drawer-card">
+      <button class="drawer-close-btn" id="closeBasketDrawer">&times;</button>
+      
+      <div class="drawer-header">
+        <span class="drawer-badge">YOUR SELECTIONS</span>
+        <h2 class="drawer-title">MORNING BAKE BASKET</h2>
+      </div>
+
+      <div class="drawer-body flex-column">
+        <!-- Empty state message -->
+        <div class="basket-empty-msg" id="basketEmptyMsg">
+          <p>🥐 Your basket is currently empty.</p>
+          <span class="subtext">Add fresh sourdough loaves or viennoiserie from our daily selection.</span>
+        </div>
+
+        <!-- Basket Items List -->
+        <div class="basket-items-list" id="basketItemsList"></div>
+
+        <!-- Basket Summary & Checkout -->
+        <div class="basket-footer" id="basketFooter" style="display: none;">
+          <div class="pickup-time-selector">
+            <label for="pickupTimeSelect">ESTIMATED PICKUP BATCH:</label>
+            <select id="pickupTimeSelect" class="basket-select">
+              <option value="06:30 AM">Batch 01 · 06:30 AM (Warm Sourdough & Croissants)</option>
+              <option value="08:15 AM">Batch 02 · 08:15 AM (Pain au Chocolat & Brioche)</option>
+              <option value="10:30 AM">Batch 03 · 10:30 AM (Berry Danishes & Pastries)</option>
+            </select>
+          </div>
+
+          <div class="basket-summary-row">
+            <span>SUBTOTAL</span>
+            <strong id="basketSubtotal">$0.00</strong>
+          </div>
+
+          <button class="btn-primary full-width margin-top-md" id="checkoutBtn">
+            PRE-ORDER FOR PICKUP →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: ORDER PICKUP CONFIRMATION MODAL -->
+  <div class="modal-backdrop" id="orderModalBackdrop">
+    <div class="modal-card text-center">
+      <button class="modal-close-btn" id="closeOrderModal">&times;</button>
+      <div class="modal-icon-circle">🥖</div>
+      <span class="modal-subtitle">RESERVATION CONFIRMED</span>
+      <h2 class="modal-title">WARM BAKE RESERVED!</h2>
+      <p class="modal-desc" id="orderConfirmDesc">
+        Your fresh morning bake is reserved for pickup at 744 Bakery Lane.
+      </p>
+      <div class="order-receipt-box" id="orderReceiptBox"></div>
+      <button class="btn-primary full-width margin-top-md" id="doneOrderBtn">
+        DONE · BACK TO BAKEHOUSE
+      </button>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to top" title="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

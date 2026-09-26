@@ -1,0 +1,37 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="crustGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9E6BF"/>
+      <stop offset="40%" stop-color="#D99043"/>
+      <stop offset="100%" stop-color="#8C532B"/>
+    </linearGradient>
+    <linearGradient id="crustLightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF9"/>
+      <stop offset="100%" stop-color="#F2D59B"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Outer Decorative Ring -->
+  <circle cx="60" cy="60" r="54" stroke="url(#crustGoldGrad)" stroke-width="2" stroke-dasharray="6 3" opacity="0.85"/>
+  <circle cx="60" cy="60" r="48" fill="#1F140E" stroke="url(#crustGoldGrad)" stroke-width="2"/>
+
+  <!-- Artisan Croissant / Loaf Crest -->
+  <path d="M35 65C35 50 45 38 60 38C75 38 85 50 85 65C85 70 81 76 75 76C70 76 67.5 71 67.5 66C67.5 61 64 57 60 57C56 57 52.5 61 52.5 66C52.5 71 50 76 45 76C39 76 35 70 35 65Z" fill="url(#crustGoldGrad)"/>
+
+  <!-- Scoring Slash Lines -->
+  <path d="M60 42V56" stroke="url(#crustLightGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M47 47L55 57" stroke="url(#crustLightGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M73 47L65 57" stroke="url(#crustLightGrad)" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Wheat Ears Base -->
+  <path d="M60 81V92" stroke="url(#crustGoldGrad)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M52 84L60 89L68 84" stroke="url(#crustGoldGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M55 79L60 83L65 79" stroke="url(#crustGoldGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Star Accent -->
+  <circle cx="60" cy="24" r="2.5" fill="#F2D59B"/>
+</svg>
